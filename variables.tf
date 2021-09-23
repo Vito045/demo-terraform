@@ -90,17 +90,32 @@ variable "environment_tag" {
   default     = "Production"
 }
 
-variable "eli_name" {
+variable "frontend_eli_name" {
   description = "Name of Elastic IP instance"
   default     = "IP"
 }
 
-variable "frontend-domain" {
-  description = "Domain of frontend-part"
+variable "backend_eli_name" {
+  description = "Name of Elastic IP instance"
+  default     = "IP"
+}
+
+variable "domain" {
+  description = "Domain for the site"
   default     = "vitaliykhomenko.space"
 }
 
-variable "backend-domain" {
+variable "frontend_domain" {
+  description = "Domain of frontend-part"
+  default     = var.domain
+}
+
+variable "backend_subdomain" {
+  description = "Subomain of backend-part"
+  default     = "server"
+}
+
+variable "backend_domain" {
   description = "Domain of backend-part"
-  default     = "server.vitaliykhomenko.space"
+  default     = "${var.backend_subdomain}.${var.frontend_domain}"
 }

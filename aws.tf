@@ -4,7 +4,7 @@ resource "aws_eip" "frontend" {
   # vpc      = true
 
   tags = {
-    Name = var.eli_name
+    Name = var.frontend_eli_name
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_eip" "backend" {
   # vpc      = true
 
   tags = {
-    Name = var.eli_name
+    Name = var.backend_eli_name
   }
 }
 
@@ -93,13 +93,6 @@ resource "aws_security_group" "frontend_security_group" {
     }
   }
 
-  # ingress {
-  #   from_port = 80
-  #   to_port = 80
-  #   protocol = "tcp"
-  #   cidr_blocks = ["${aws_instance.frontend.public_id}/32"]
-  # }
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -111,7 +104,6 @@ resource "aws_security_group" "frontend_security_group" {
 resource "aws_security_group" "backend_security_group" {
   name        = "backend_security_group"
   description = "Security rule for backend"
-  # vpc_id = "${aws_vpc.vpc.id}"
 
   dynamic "ingress" {
     for_each = toset(var.ports_in_backend)
@@ -132,13 +124,13 @@ resource "aws_security_group" "backend_security_group" {
   }
 }
 
-resource "aws_security_group_rule" "backend" {
-  type        = "ingress"
-  from_port   = 80
-  to_port     = 80
-  protocol    = "-1"
-  cidr_blocks = ["${aws_instance.frontend.public_ip}/32"]
+resource "aws_security_group_rule" "client-server" {
+  type      = "ingress"
+  from_port = 80
+  to_port   = 80
+  protocol  = "-1"
+  # cidr_blocks = ["${aws_instance.frontend.public_ip}/32"]
   # cidr_blocks       = ["${aws_eip.lb.public_ip}/32"]
-  # cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.backend_security_group.id
 }
