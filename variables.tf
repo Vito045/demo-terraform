@@ -100,14 +100,14 @@ variable "backend_eli_name" {
   default     = "IP"
 }
 
-variable "domain" {
-  description = "Domain for the site"
-  default     = "vitaliykhomenko.space"
-}
+# variable "domain" {
+#   description = "Domain for the site"
+#   default     = "vitaliykhomenko.space"
+# }
 
 variable "frontend_domain" {
   description = "Domain of frontend-part"
-  default     = var.domain
+  default     = "vitaliykhomenko.space"
 }
 
 variable "backend_subdomain" {
@@ -117,5 +117,11 @@ variable "backend_subdomain" {
 
 variable "backend_domain" {
   description = "Domain of backend-part"
-  default     = "${var.backend_subdomain}.${var.frontend_domain}"
+  # default     = "${var.backend_subdomain}.${var.frontend_domain}"
+  default = "server.vitaliykhomenko.space"
+}
+
+
+variable "zone_id" {
+  default = "14609599593ae7922ea2f534878857e6"
 }
