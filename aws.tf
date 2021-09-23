@@ -1,7 +1,6 @@
 
 resource "aws_eip" "frontend" {
   instance = aws_instance.frontend.id
-  # vpc      = true
 
   tags = {
     Name = var.frontend_eli_name
@@ -10,7 +9,6 @@ resource "aws_eip" "frontend" {
 
 resource "aws_eip" "backend" {
   instance = aws_instance.backend.id
-  # vpc      = true
 
   tags = {
     Name = var.backend_eli_name
@@ -49,7 +47,6 @@ resource "aws_security_group" "backend_security_group" {
       to_port     = ingress.value
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
-      # cidr_blocks = ["${aws_instance.frontend.public_ip}/32"]
     }
   }
 
