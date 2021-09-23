@@ -18,6 +18,10 @@ provider "aws" {
   secret_key = file("../secret_key.txt")
 }
 
+provider "cloudflare" {
+  email = "you@example.com"
+  token = "your-api-key"
+}
 
 resource "aws_eip" "lb" {
   instance = aws_instance.server-1.id
