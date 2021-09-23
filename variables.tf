@@ -1,5 +1,5 @@
 variable "ami-id" {
-  type = string
+  type    = string
   default = "ami-087c17d1fe0178315" // Amazon
   # default = "ami-09e67e426f25ce0d7" // Ubuntu 20
 }
@@ -14,17 +14,13 @@ variable "instance-type" {
   default = "t2.micro"
 }
 
-variable "name-1" {
-  type = string
+variable "frontend_name" {
+  type    = string
   default = "Server 1"
 }
 
-variable "nameus-1" {
-  type = string
-  default = "Server 1"
-}
-variable "name-2" {
-  type = string
+variable "backend_name" {
+  type    = string
   default = "Server 2"
 }
 
@@ -46,40 +42,40 @@ variable "name-2" {
 #   default = []
 # }
 
-variable "ports_in_server-1" {
-  type    = list(number)
+variable "ports_in_frontend" {
+  type = list(number)
   default = [
     443,
     80,
     22
   ]
 }
-variable "ports_in_server-2" {
-  type    = list(number)
+variable "ports_in_backend" {
+  type = list(number)
   default = [
-    # 443,
+    443,
     22,
-    80
+    # 80
   ]
 }
 
 
-variable "cidr_vpc" {
-  description = "CIDR block for the VPC"
-  default = "10.1.0.0/16"
-}
-variable "cidr_subnet" {
-  description = "CIDR block for the subnet"
-  default = "10.1.0.0/24"
-}
-variable "availability_zone" {
-  description = "availability zone to create subnet"
-  default = "us-east-1a"
-}
-variable "public_key_path" {
-  description = "Public key path"
-  default = "~/.ssh/id_rsa.pub"
-}
+# variable "cidr_vpc" {
+#   description = "CIDR block for the VPC"
+#   default     = "10.1.0.0/16"
+# }
+# variable "cidr_subnet" {
+#   description = "CIDR block for the subnet"
+#   default     = "10.1.0.0/24"
+# }
+# variable "availability_zone" {
+#   description = "availability zone to create subnet"
+#   default     = "us-east-1a"
+# }
+# variable "public_key_path" {
+#   description = "Public key path"
+#   default     = "~/.ssh/id_rsa.pub"
+# }
 # variable "instance_ami" {
 #   description = "AMI for aws EC2 instance"
 #   default = "ami-0cf31d971a3ca20d6"
@@ -88,12 +84,23 @@ variable "public_key_path" {
 #   description = "type for aws EC2 instance"
 #   default = "t2.micro"
 # }
+
 variable "environment_tag" {
   description = "Environment tag"
-  default = "Production"
+  default     = "Production"
 }
 
 variable "eli_name" {
   description = "Name of Elastic IP instance"
-  default = "IP"
+  default     = "IP"
+}
+
+variable "frontend-domain" {
+  description = "Domain of frontend-part"
+  default     = "vitaliykhomenko.space"
+}
+
+variable "backend-domain" {
+  description = "Domain of backend-part"
+  default     = "server.vitaliykhomenko.space"
 }

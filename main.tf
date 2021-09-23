@@ -12,15 +12,14 @@ terraform {
 }
 
 provider "aws" {
-  # profile = "iamadmin-general"
   region     = "us-east-1"
   access_key = "AKIAYMJIZ6GH363RHNRP"
   secret_key = file("../secret_key.txt")
 }
 
 provider "cloudflare" {
-  email = "you@example.com"
-  token = "your-api-key"
+  email = "vito045@icloud.com"
+  token = file("../cloudflare_token.txt")
 }
 
 resource "aws_eip" "lb" {
