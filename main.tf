@@ -15,14 +15,11 @@ provider "aws" {
   region     = "us-east-1"
   access_key = "AKIAYMJIZ6GH363RHNRP"
   secret_key = file("../secret_key.txt")
-  # secret_key = "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"
 }
 
 provider "cloudflare" {
   email     = "vito045@icloud.com"
   api_token = file("../cloudflare_api_key.txt")
-  # api_key = "-Z54FgevENsBOIgAHxC2sDieFxvN8t4Hjp1EqvJ7"
-  # api_key = "xPF-y0Xfzb3QT7lg-POGJ75dwYT5ufVRPXR0KLUa"
 
 }
 
@@ -79,7 +76,7 @@ resource "aws_instance" "backend" {
       "sudo yum update -y",
       "sudo yum install docker -y",
       "sudo service docker start",
-      "sudo docker container run -d -p 0.0.0.0:80:4000 vito045/server"
+      "sudo docker container run -d -p 0.0.0.0:80:4000 vito045/backend"
     ]
   }
 
