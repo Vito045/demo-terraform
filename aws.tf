@@ -62,7 +62,7 @@ resource "aws_security_group_rule" "client-server" {
   type      = "ingress"
   from_port = 80
   to_port   = 80
-  protocol  = "-1"
+  protocol  = "tcp"
   # cidr_blocks = ["${aws_instance.frontend.public_ip}/32"]
   # cidr_blocks       = ["${aws_eip.lb.public_ip}/32"]
   cidr_blocks       = ["0.0.0.0/0"]
